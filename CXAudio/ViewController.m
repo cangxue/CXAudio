@@ -10,6 +10,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *filePathLabel;
+
 @end
 
 @implementation ViewController
@@ -19,11 +21,24 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - recorder
+- (IBAction)startRecorderClickBtn:(id)sender {
+}
+- (IBAction)pauseRecorderClickBtn:(id)sender {
+}
+- (IBAction)goonRecorderClickBtn:(id)sender {
 }
 
+- (IBAction)endRecorderClickBtn:(id)sender {
+}
+#pragma mark - palyer
+- (IBAction)startPlayerClickBtn:(id)sender {
+}
+- (IBAction)pausePlayerClickBtn:(id)sender {
+}
+- (IBAction)goonPlayerClickBtn:(id)sender {
+}
+- (IBAction)endPlayerClickBtn:(id)sender {
+}
 
 @end

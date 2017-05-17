@@ -31,5 +31,8 @@ typedef void(^RecordSuccessBlock)(NSData *recordData);
 // Current recorder
 +(AVAudioRecorder *)recorder;
 
+//duration
++ (NSTimeInterval)duration;
+
 
 @end

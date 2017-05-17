@@ -14,7 +14,6 @@
 		D10C06461EC04A0900CAD1D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D10C06451EC04A0900CAD1D4 /* Assets.xcassets */; };
 		D10C06491EC04A0900CAD1D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10C06471EC04A0900CAD1D4 /* LaunchScreen.storyboard */; };
 		D10C06C81EC19CAE00CAD1D4 /* CXAudioManger.m in Sources */ = {isa = PBXBuildFile; fileRef = D10C06B01EC19CAE00CAD1D4 /* CXAudioManger.m */; };
-		D10C06C91EC19CAE00CAD1D4 /* CXAudioPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D10C06B21EC19CAE00CAD1D4 /* CXAudioPath.m */; };
 		D10C06CA1EC19CAE00CAD1D4 /* CXAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D10C06B41EC19CAE00CAD1D4 /* CXAudioPlayer.m */; };
 		D10C06CB1EC19CAE00CAD1D4 /* CXAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D10C06B61EC19CAE00CAD1D4 /* CXAudioRecorder.m */; };
 		D10C06CC1EC19CAE00CAD1D4 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = D10C06BB1EC19CAE00CAD1D4 /* amrFileCodec.mm */; };
@@ -22,6 +21,7 @@
 		D10C06CE1EC19CAE00CAD1D4 /* VoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = D10C06BF1EC19CAE00CAD1D4 /* VoiceConverter.mm */; };
 		D10C06CF1EC19CAE00CAD1D4 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D10C06C31EC19CAE00CAD1D4 /* libopencore-amrnb.a */; };
 		D10C06D01EC19CAE00CAD1D4 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D10C06C71EC19CAE00CAD1D4 /* libopencore-amrwb.a */; };
+		D1EE02751ECC1DA300C11535 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1EE02741ECC1DA300C11535 /* background.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +37,6 @@
 		D10C064A1EC04A0900CAD1D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D10C06AF1EC19CAE00CAD1D4 /* CXAudioManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAudioManger.h; sourceTree = "<group>"; };
 		D10C06B01EC19CAE00CAD1D4 /* CXAudioManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAudioManger.m; sourceTree = "<group>"; };
-		D10C06B11EC19CAE00CAD1D4 /* CXAudioPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAudioPath.h; sourceTree = "<group>"; };
-		D10C06B21EC19CAE00CAD1D4 /* CXAudioPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAudioPath.m; sourceTree = "<group>"; };
 		D10C06B31EC19CAE00CAD1D4 /* CXAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAudioPlayer.h; sourceTree = "<group>"; };
 		D10C06B41EC19CAE00CAD1D4 /* CXAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAudioPlayer.m; sourceTree = "<group>"; };
 		D10C06B51EC19CAE00CAD1D4 /* CXAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAudioRecorder.h; sourceTree = "<group>"; };
@@ -56,6 +54,7 @@
 		D10C06C51EC19CAE00CAD1D4 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		D10C06C61EC19CAE00CAD1D4 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
 		D10C06C71EC19CAE00CAD1D4 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		D1EE02741ECC1DA300C11535 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +95,7 @@
 				D10C063F1EC04A0900CAD1D4 /* ViewController.h */,
 				D10C06401EC04A0900CAD1D4 /* ViewController.m */,
 				D10C06421EC04A0900CAD1D4 /* Main.storyboard */,
+				D1EE02731ECC1D6A00C11535 /* Resource */,
 				D10C06451EC04A0900CAD1D4 /* Assets.xcassets */,
 				D10C06471EC04A0900CAD1D4 /* LaunchScreen.storyboard */,
 				D10C064A1EC04A0900CAD1D4 /* Info.plist */,
@@ -126,8 +126,6 @@
 			children = (
 				D10C06AF1EC19CAE00CAD1D4 /* CXAudioManger.h */,
 				D10C06B01EC19CAE00CAD1D4 /* CXAudioManger.m */,
-				D10C06B11EC19CAE00CAD1D4 /* CXAudioPath.h */,
-				D10C06B21EC19CAE00CAD1D4 /* CXAudioPath.m */,
 				D10C06B31EC19CAE00CAD1D4 /* CXAudioPlayer.h */,
 				D10C06B41EC19CAE00CAD1D4 /* CXAudioPlayer.m */,
 				D10C06B51EC19CAE00CAD1D4 /* CXAudioRecorder.h */,
@@ -178,6 +176,14 @@
 				D10C06C71EC19CAE00CAD1D4 /* libopencore-amrwb.a */,
 			);
 			path = "opencore-amrwb";
+			sourceTree = "<group>";
+		};
+		D1EE02731ECC1D6A00C11535 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D1EE02741ECC1DA300C11535 /* background.jpg */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D10C06491EC04A0900CAD1D4 /* LaunchScreen.storyboard in Resources */,
+				D1EE02751ECC1DA300C11535 /* background.jpg in Resources */,
 				D10C06461EC04A0900CAD1D4 /* Assets.xcassets in Resources */,
 				D10C06441EC04A0900CAD1D4 /* Main.storyboard in Resources */,
 			);
@@ -255,7 +262,6 @@
 				D10C06CB1EC19CAE00CAD1D4 /* CXAudioRecorder.m in Sources */,
 				D10C06411EC04A0900CAD1D4 /* ViewController.m in Sources */,
 				D10C06C81EC19CAE00CAD1D4 /* CXAudioManger.m in Sources */,
-				D10C06C91EC19CAE00CAD1D4 /* CXAudioPath.m in Sources */,
 				D10C063E1EC04A0900CAD1D4 /* AppDelegate.m in Sources */,
 				D10C06CC1EC19CAE00CAD1D4 /* amrFileCodec.mm in Sources */,
 				D10C06CA1EC19CAE00CAD1D4 /* CXAudioPlayer.m in Sources */,

@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger, CXAudioSession){
     
     [self setupAudioSessionCategory:CX_AUDIORECORDER isActive:YES];
     
-    NSString *recordPath = [NSString stringWithFormat:@"%@/%@",[self dataPath],fileName];
+    NSString *recordPath = [NSString stringWithFormat:@"%@/%@",[CXAudioManger dataPath],fileName];
     
     _recorderStartDate = [NSDate date];
     [CXAudioRecorder asyncStartRecordingWithPreparePath:recordPath completion:completion];
@@ -227,9 +227,9 @@ typedef NS_ENUM(NSInteger, CXAudioSession){
 }
 
 #pragma mark - dataPath
-- (NSString*)dataPath
++ (NSString*)dataPath
 {
-    NSString *dataPath = [NSString stringWithFormat:@"%@/Library/appdata/chatbuffer", NSHomeDirectory()];
+    NSString *dataPath = [NSString stringWithFormat:@"%@/Library/appdata/recorder", NSHomeDirectory()];
     NSFileManager *fm = [NSFileManager defaultManager];
     if(![fm fileExistsAtPath:dataPath]){
         [fm createDirectoryAtPath:dataPath

@@ -53,6 +53,11 @@
     return [CXAudioRecorder sharedInstance].recorder;
 }
 
+//duration
++ (NSTimeInterval)duration {
+    return [CXAudioRecorder sharedInstance].recorder.currentTime;
+}
+
 #pragma mark - getter
 - (NSDictionary *)recordSetting
 {
