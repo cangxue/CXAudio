@@ -18,8 +18,6 @@
 // Stop playing
 - (void)stopPlaying;
 
-- (void)stopPlayingWithChangeCategory:(BOOL)isChange;
-
 -(BOOL)isPlaying;
 
 #pragma mark - AudioRecorder
