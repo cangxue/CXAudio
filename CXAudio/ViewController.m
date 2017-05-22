@@ -27,8 +27,8 @@
 
 #pragma mark - recorder
 - (IBAction)startRecorderClickBtn:(id)sender {
-    [[CXAudioManger sharedInstance] asyncStartRecordingWithFileName:kRecorderFileName updateMeters:^(float meters, NSTimeInterval currentTIme) {
-        self.timeLabel.text = [NSString stringWithFormat:@"时间：%@\n频率：%.2f",[self timeFormatted:currentTIme], meters + 60];
+    [[CXAudioManger sharedInstance] asyncStartRecordingWithFileName:kRecorderFileName updateMeters:^(float meters, NSTimeInterval currentTime) {
+        self.timeLabel.text = [NSString stringWithFormat:@"时间：%@\n频率：%.2f",[self timeFormatted:currentTime], meters + 60];
     } completion:^(NSError *error) {
         if (error) {
             NSLog(@"录音失败");
@@ -57,7 +57,9 @@
 
 #pragma mark - palyer
 - (IBAction)startPlayerClickBtn:(id)sender {
-    [[CXAudioManger sharedInstance] asyncPlayingWithPath:kRecorderFileName completion:^(NSError *error) {
+    [[CXAudioManger sharedInstance] asyncPlayingWithPath:kRecorderFileName updateMeters:^(float meters, NSTimeInterval currentTime) {
+        self.timeLabel.text = [NSString stringWithFormat:@"时间：%@\n频率：%.2f",[self timeFormatted:currentTime], meters + 60];
+    } completion:^(NSError *error) {
         if (error) {
             NSLog(@"%@",error.description);
         }

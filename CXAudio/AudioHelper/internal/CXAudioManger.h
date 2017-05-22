@@ -16,7 +16,8 @@
 #pragma mark - AudioPlayer
 // Play the audio
 - (void)asyncPlayingWithPath:(NSString *)aFilePath
-                  completion:(void(^)(NSError *error))completon;
+                updateMeters:(void(^)(float meters, NSTimeInterval currentTime))palyMeter
+                  completion:(void(^)(NSError *error))completion;
 // Stop playing
 - (void)stopPlaying;
 
@@ -25,7 +26,7 @@
 #pragma mark - AudioRecorder
 // Start recording
 - (void)asyncStartRecordingWithFileName:(NSString *)fileName
-                            updateMeters:(void(^)(float meters, NSTimeInterval currentTIme))updateMeter
+                            updateMeters:(void(^)(float meters, NSTimeInterval currentTime))updateMeter
                              completion:(void(^)(NSError *error))completion;
 
 // Stop recording

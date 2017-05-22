@@ -14,6 +14,9 @@
     void (^playFinish)(NSError *error);
 }
 
+@property (nonatomic, copy) PlayWithMeters playMeters;
+@property (nonatomic) dispatch_source_t playTimer;
+
 @end
 
 @implementation CXAudioPlayer
@@ -28,8 +31,10 @@
 }
 
 + (void)asyncPlayingWithPath:(NSString *)aFilePath
-                  completion:(void(^)(NSError *error))completon{
+                updateMeters:(PlayWithMeters)meters
+                  completion:(void(^)(NSError *error))completon {
     [[CXAudioPlayer sharedInstance] asyncPlayingWithPath:aFilePath
+                                            updateMeters:meters
                                                   completion:completon];
 }
 
@@ -66,7 +71,9 @@
 }
 
 - (void)asyncPlayingWithPath:(NSString *)aFilePath
+                updateMeters:(PlayWithMeters)meters
                   completion:(void(^)(NSError *error))completon{
+    _playMeters = meters;
     playFinish = completon;
     NSError *error = nil;
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -97,8 +104,17 @@
     }
     
     _player.delegate = self;
+    _player.meteringEnabled = YES;
     [_player prepareToPlay];
-    [_player play];
+    if ([_player play]) {
+        self.playTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+        dispatch_source_set_timer(self.playTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+        dispatch_source_set_event_handler(self.playTimer, ^{
+            [_player updateMeters];
+            self.playMeters([_player averagePowerForChannel:0], _player.currentTime);
+        });
+        dispatch_resume(self.playTimer);
+    }
 }
 
 - (void)stopCurrentPlaying{
@@ -132,6 +148,10 @@
         _player = nil;
     }
     playFinish = nil;
+    
+    if (_playTimer) {
+        [self stopTimer];
+    }
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player
@@ -146,8 +166,17 @@
         _player.delegate = nil;
         _player = nil;
     }
+    if (_playTimer) {
+        [self stopTimer];
+    }
 }
 
-
+#pragma mark - dispatch_source_create
+- (void)stopTimer {
+    if (self.playTimer) {
+        dispatch_source_cancel(self.playTimer);
+    }
+    self.playTimer = NULL;
+}
 
 @end

@@ -42,7 +42,8 @@ static CXAudioManger *audioManager;
 #pragma mark - AudioPlayer
 // Play the audio
 - (void)asyncPlayingWithPath:(NSString *)aFilePath
-                  completion:(void(^)(NSError *error))completon {
+                updateMeters:(void(^)(float meters, NSTimeInterval currentTime))palyMeter
+                  completion:(void(^)(NSError *error))completion {
     BOOL isNeedSetActive = YES;
     //cancel if it is currently playing
     if ([CXAudioPlayer isPlaying]) {
@@ -62,21 +63,20 @@ static CXAudioManger *audioManager;
         //格式转换
         BOOL covertRet = [self convertAMR:amrFilePath toWAV:wavFilePath];
         if (!covertRet) {
-            if (completon) {
+            if (completion) {
                 NSError *error = [NSError errorWithDomain:@"File format conversion failed" code:EMErrorFileTypeConvertionFailure userInfo:nil];
-                completon(error);
+                completion(error);
             }
             return;
         }
     }
 
-    [CXAudioPlayer asyncPlayingWithPath:wavFilePath completion:^(NSError *error) {
-        [self setupAudioSessionCategory:CX_DEFAULT isActive:NO];
-        
-        if (completon) {
-            completon(error);
-        }
-    }];
+    
+    [self setupAudioSessionCategory:CX_AUDIOPLAYER isActive:NO];
+    
+    [CXAudioPlayer asyncPlayingWithPath:wavFilePath
+                           updateMeters:palyMeter
+                             completion:completion];
 }
 
 // Stop playing
@@ -92,7 +92,7 @@ static CXAudioManger *audioManager;
 #pragma mark - AudioRecorder
 // Start recording
 - (void)asyncStartRecordingWithFileName:(NSString *)fileName
-                           updateMeters:(void(^)(float meters, NSTimeInterval currentTIme))updateMeter
+                           updateMeters:(void(^)(float meters, NSTimeInterval currentTime))updateMeter
                              completion:(void(^)(NSError *error))completion {
     NSError *error = nil;
     

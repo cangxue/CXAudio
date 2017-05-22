@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 //实时返回当前录音的平均功率，和录制时间
-typedef void (^RecordWithMeters)(float meters, NSTimeInterval currentTIme);
+typedef void (^RecordWithMeters)(float meters, NSTimeInterval currentTime);
 
 @interface CXAudioRecorder : NSObject
 
