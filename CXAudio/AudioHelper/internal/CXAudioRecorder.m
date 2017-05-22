@@ -19,10 +19,14 @@
     NSDate *_endDate;
     
     void (^recordFinish)(NSString *recordPath);
+    
 }
 
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) NSDictionary *recordSetting;
+
+@property (nonatomic, copy) RecordWithMeters recordMeters;
+@property (nonatomic) dispatch_source_t recordTimer;
 
 @end
 
@@ -34,9 +38,11 @@
 
 // Start recording
 + (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
+                              updateMeters:(RecordWithMeters)meters
                                 completion:(void(^)(NSError *error))completion {
     [[CXAudioRecorder sharedInstance] asyncStartRecordingWithPreparePath:aFilePath
-                                                                  completion:completion];
+                                                            updateMeters:meters
+                                                              completion:completion];
 }
 
 // Stop recording
@@ -108,8 +114,10 @@
 
 // Start recording，save the audio file to the path
 - (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
+                              updateMeters:(RecordWithMeters)meters
                                 completion:(void(^)(NSError *error))completion
 {
+    self.recordMeters = meters;
     NSError *error = nil;
     NSString *wavFilePath = [[aFilePath stringByDeletingPathExtension]
                              stringByAppendingPathExtension:@"wav"];
@@ -131,7 +139,18 @@
     _startDate = [NSDate date];
     _recorder.meteringEnabled = YES;
     _recorder.delegate = self;
-    [_recorder record];
+    
+    if ([_recorder record]) {
+        self.recordTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+        dispatch_source_set_timer(self.recordTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 *NSEC_PER_SEC);
+        dispatch_source_set_event_handler(self.recordTimer, ^{
+            [self.recorder updateMeters];
+            self.recordMeters([self.recorder averagePowerForChannel:0], self.recorder.currentTime);
+        });
+        dispatch_resume(self.recordTimer);
+    }
+    
+    
     if (completion) {
         completion(error);
     }
@@ -156,7 +175,6 @@
     recordFinish = nil;
 }
 
-
 #pragma mark - AVAudioRecorderDelegate
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder
                            successfully:(BOOL)flag
@@ -170,11 +188,21 @@
     }
     _recorder = nil;
     recordFinish = nil;
+    [self stopTimer];
 }
 
 - (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder
                                    error:(NSError *)error{
+    [self stopTimer];
     NSLog(@"audioRecorderEncodeErrorDidOccur");
+}
+
+#pragma mark - dispatch_source_create
+- (void)stopTimer {
+    if (self.recordTimer) {
+        dispatch_source_cancel(self.recordTimer);
+    }
+    self.recordTimer = NULL;
 }
 
 @end

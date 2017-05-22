@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, CXAudioSession){
     CX_AUDIORECORDER
 };
 
+static CXAudioManger *audioManager;
 
 @interface CXAudioManger() {
     NSDate *_recorderStartDate;
@@ -28,6 +29,16 @@ typedef NS_ENUM(NSInteger, CXAudioSession){
 
 
 @implementation CXAudioManger
+
++ (CXAudioManger *)sharedInstance{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        audioManager = [[CXAudioManger alloc] init];
+    });
+    
+    return audioManager;
+}
+
 #pragma mark - AudioPlayer
 // Play the audio
 - (void)asyncPlayingWithPath:(NSString *)aFilePath
@@ -42,12 +53,14 @@ typedef NS_ENUM(NSInteger, CXAudioSession){
     if (isNeedSetActive) {
         [self setupAudioSessionCategory:CX_AUDIOPLAYER isActive:YES];
     }
+    NSString *recordPath = [NSString stringWithFormat:@"%@/%@",[CXAudioManger dataPath],aFilePath];
+    NSString *amrFilePath = [recordPath stringByAppendingPathExtension:@"amr"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *wavFilePath = [[aFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"wav"];
+    NSString *wavFilePath = [[amrFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"wav"];
     if (![fileManager fileExistsAtPath:wavFilePath]) {
         //格式转换
-        BOOL covertRet = [self convertAMR:aFilePath toWAV:wavFilePath];
+        BOOL covertRet = [self convertAMR:amrFilePath toWAV:wavFilePath];
         if (!covertRet) {
             if (completon) {
                 NSError *error = [NSError errorWithDomain:@"File format conversion failed" code:EMErrorFileTypeConvertionFailure userInfo:nil];
@@ -79,6 +92,7 @@ typedef NS_ENUM(NSInteger, CXAudioSession){
 #pragma mark - AudioRecorder
 // Start recording
 - (void)asyncStartRecordingWithFileName:(NSString *)fileName
+                           updateMeters:(void(^)(float meters, NSTimeInterval currentTIme))updateMeter
                              completion:(void(^)(NSError *error))completion {
     NSError *error = nil;
     
@@ -99,7 +113,9 @@ typedef NS_ENUM(NSInteger, CXAudioSession){
     NSString *recordPath = [NSString stringWithFormat:@"%@/%@",[CXAudioManger dataPath],fileName];
     
     _recorderStartDate = [NSDate date];
-    [CXAudioRecorder asyncStartRecordingWithPreparePath:recordPath completion:completion];
+    [CXAudioRecorder asyncStartRecordingWithPreparePath:recordPath
+                                           updateMeters:updateMeter
+                                             completion:completion];
     
 }
 

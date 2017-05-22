@@ -1,35 +1,44 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B641943044EF1146DA00AC3C2C431352358E6FFC",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B641943044EF1146DA00AC3C2C431352358E6FFC+++0F7DBB6",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "5EC330B5DC718127746E86EC04A2E09EA30F99C4" : 9223372036854775807,
-    "B641943044EF1146DA00AC3C2C431352358E6FFC" : 9223372036854775807
+    "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++FC3D565" : 9223372036854775807,
+    "B641943044EF1146DA00AC3C2C431352358E6FFC+++0F7DBB6" : 9223372036854775807,
+    "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++7B9CAEB" : 9223372036854775807,
+    "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++B0430F3" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "41B0F9FC-6C85-4148-AEA2-4A27D9078550",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "5EC330B5DC718127746E86EC04A2E09EA30F99C4" : "..",
-    "B641943044EF1146DA00AC3C2C431352358E6FFC" : "CXAudio\/"
+    "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++FC3D565" : "",
+    "B641943044EF1146DA00AC3C2C431352358E6FFC+++0F7DBB6" : "CXAudio\/",
+    "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++7B9CAEB" : "..",
+    "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++B0430F3" : ".."
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "CXAudio",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CXAudio.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cangxue\/CXTableView",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++7B9CAEB"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cangxue\/CXAudio",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5EC330B5DC718127746E86EC04A2E09EA30F99C4"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++B0430F3"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cangxue\/CXTableView",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5EC330B5DC718127746E86EC04A2E09EA30F99C4"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5EC330B5DC718127746E86EC04A2E09EA30F99C4+++FC3D565"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cangxue\/CXAudio.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B641943044EF1146DA00AC3C2C431352358E6FFC"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B641943044EF1146DA00AC3C2C431352358E6FFC+++0F7DBB6"
     }
   ]
 }

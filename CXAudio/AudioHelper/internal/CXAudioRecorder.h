@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-//失败回调
-typedef void(^RecordFailedBlock)(NSError *error);
-
-//成功回调
-typedef void(^RecordSuccessBlock)(NSData *recordData);
+//实时返回当前录音的平均功率，和录制时间
+typedef void (^RecordWithMeters)(float meters, NSTimeInterval currentTIme);
 
 @interface CXAudioRecorder : NSObject
 
@@ -21,6 +18,7 @@ typedef void(^RecordSuccessBlock)(NSData *recordData);
 
 // Start recording
 + (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
+                              updateMeters:(RecordWithMeters)meters
                                 completion:(void(^)(NSError *error))completion;
 // Stop recording
 +(void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion;

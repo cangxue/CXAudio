@@ -62,7 +62,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lM9-B3-U7G">
                                 <rect key="frame" x="297" y="576" width="62" height="30"/>
-                                <state key="normal" title="暂停录音">
+                                <state key="normal" title="暂停播放">
                                     <color key="titleColor" red="0.93333333330000001" green="0.58823529409999997" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -71,7 +71,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vk-nW-yMz">
                                 <rect key="frame" x="297" y="599" width="62" height="30"/>
-                                <state key="normal" title="继续录音">
+                                <state key="normal" title="继续播放">
                                     <color key="titleColor" red="0.93333333330000001" green="0.58823529409999997" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -80,7 +80,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stm-Qx-ypV">
                                 <rect key="frame" x="297" y="549" width="62" height="30"/>
-                                <state key="normal" title="开始录音">
+                                <state key="normal" title="开始播放">
                                     <color key="titleColor" red="0.93333333330000001" green="0.58823529409999997" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -89,7 +89,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dA-k7-e4n">
                                 <rect key="frame" x="297" y="626" width="62" height="30"/>
-                                <state key="normal" title="结束录音">
+                                <state key="normal" title="结束播放">
                                     <color key="titleColor" red="0.93333333330000001" green="0.58823529409999997" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -114,6 +114,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZC-Fk-kqf">
+                                <rect key="frame" x="166" y="323" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -126,6 +132,7 @@
                             <constraint firstItem="Fe2-ge-hTr" firstAttribute="baseline" secondItem="lM9-B3-U7G" secondAttribute="baseline" id="Nqd-eS-mdh"/>
                             <constraint firstItem="Gby-0y-5tV" firstAttribute="top" secondItem="g7M-2D-Usk" secondAttribute="bottom" constant="20" id="RDF-Af-VOo"/>
                             <constraint firstItem="lM9-B3-U7G" firstAttribute="leading" secondItem="1vk-nW-yMz" secondAttribute="leading" id="SQC-iG-2DD"/>
+                            <constraint firstItem="9ZC-Fk-kqf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UXI-xr-dvo"/>
                             <constraint firstItem="g7M-2D-Usk" firstAttribute="baseline" secondItem="Stm-Qx-ypV" secondAttribute="baseline" id="VDG-SA-RR2"/>
                             <constraint firstAttribute="trailing" secondItem="Sbn-jq-oSb" secondAttribute="trailing" id="Xef-4H-pQo"/>
                             <constraint firstItem="Stm-Qx-ypV" firstAttribute="leading" secondItem="lM9-B3-U7G" secondAttribute="leading" id="ZjO-vP-AzC"/>
@@ -134,6 +141,7 @@
                             <constraint firstItem="g7M-2D-Usk" firstAttribute="top" secondItem="ad7-vD-KnD" secondAttribute="bottom" constant="8" symbolic="YES" id="gUW-QT-HUx"/>
                             <constraint firstItem="g7M-2D-Usk" firstAttribute="leading" secondItem="Fe2-ge-hTr" secondAttribute="leading" id="gjv-ul-aK1"/>
                             <constraint firstItem="ctT-VE-oKE" firstAttribute="trailing" secondItem="Stm-Qx-ypV" secondAttribute="trailing" id="gtZ-bY-zYp"/>
+                            <constraint firstItem="9ZC-Fk-kqf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ikJ-o3-aka"/>
                             <constraint firstItem="1Wo-f1-pNV" firstAttribute="baseline" secondItem="1dA-k7-e4n" secondAttribute="baseline" id="j7R-do-XRm"/>
                             <constraint firstItem="Gby-0y-5tV" firstAttribute="leading" secondItem="1Wo-f1-pNV" secondAttribute="leading" id="nLK-d9-EUf"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Sbn-jq-oSb" secondAttribute="bottom" id="nZq-nc-HWE"/>
@@ -148,6 +156,7 @@
                     </view>
                     <connections>
                         <outlet property="filePathLabel" destination="5gJ-0u-nJU" id="BX7-6x-7UT"/>
+                        <outlet property="timeLabel" destination="9ZC-Fk-kqf" id="tju-g6-hlW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

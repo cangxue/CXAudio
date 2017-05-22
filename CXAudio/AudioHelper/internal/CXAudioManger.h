@@ -11,6 +11,8 @@
 
 @interface CXAudioManger : NSObject
 
++ (CXAudioManger *)sharedInstance;
+
 #pragma mark - AudioPlayer
 // Play the audio
 - (void)asyncPlayingWithPath:(NSString *)aFilePath
@@ -23,6 +25,7 @@
 #pragma mark - AudioRecorder
 // Start recording
 - (void)asyncStartRecordingWithFileName:(NSString *)fileName
+                            updateMeters:(void(^)(float meters, NSTimeInterval currentTIme))updateMeter
                              completion:(void(^)(NSError *error))completion;
 
 // Stop recording
