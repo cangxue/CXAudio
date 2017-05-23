@@ -18,6 +18,12 @@
 - (void)asyncPlayingWithPath:(NSString *)aFilePath
                 updateMeters:(void(^)(float meters, NSTimeInterval currentTime))palyMeter
                   completion:(void(^)(NSError *error))completion;
+// pause playing
+- (void)asyncPausePlaying;
+
+// goon playing
+- (void)asyncGoonPlaying;
+
 // Stop playing
 - (void)stopPlaying;
 
@@ -33,6 +39,12 @@
 -(void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath,
                                                  NSInteger aDuration,
                                                  NSError *error))completion;
+// pause recording
+- (void)asyncPauseRecording;
+
+// goon recording
+- (void)asyncGoonRecording;
+
 // Cancel recording
 -(void)cancelCurrentRecording;
 

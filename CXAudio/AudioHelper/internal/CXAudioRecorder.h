@@ -14,20 +14,26 @@ typedef void (^RecordWithMeters)(float meters, NSTimeInterval currentTime);
 
 @interface CXAudioRecorder : NSObject
 
-+(BOOL)isRecording;
++ (BOOL)isRecording;
 
 // Start recording
 + (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
                               updateMeters:(RecordWithMeters)meters
                                 completion:(void(^)(NSError *error))completion;
 // Stop recording
-+(void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion;
++ (void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion;
+
+// pause recording
++ (void)asyncPauseRecording;
+
+// goon recording
++ (void)asyncGoonRecording;
 
 // Cancel recording
-+(void)cancelCurrentRecording;
++ (void)cancelCurrentRecording;
 
 // Current recorder
-+(AVAudioRecorder *)recorder;
++ (AVAudioRecorder *)recorder;
 
 //duration
 + (NSTimeInterval)duration;

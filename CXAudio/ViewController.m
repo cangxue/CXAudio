@@ -37,8 +37,11 @@
 }
 
 - (IBAction)pauseRecorderClickBtn:(id)sender {
+    [[CXAudioManger sharedInstance] asyncPauseRecording];
 }
+
 - (IBAction)goonRecorderClickBtn:(id)sender {
+    [[CXAudioManger sharedInstance] asyncGoonRecording];
 }
 
 - (IBAction)endRecorderClickBtn:(id)sender {
@@ -65,10 +68,15 @@
         }
     }];
 }
+
 - (IBAction)pausePlayerClickBtn:(id)sender {
+    [[CXAudioManger sharedInstance] asyncPausePlaying];
 }
+
 - (IBAction)goonPlayerClickBtn:(id)sender {
+    [[CXAudioManger sharedInstance] asyncGoonPlaying];
 }
+
 - (IBAction)endPlayerClickBtn:(id)sender {
     if ([CXAudioManger sharedInstance].isPlaying) {
         [[CXAudioManger sharedInstance] stopPlaying];

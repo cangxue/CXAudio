@@ -50,6 +50,17 @@
     [[CXAudioRecorder sharedInstance] asyncStopRecordingWithCompletion:completion];
 }
 
+// pause recording
++ (void)asyncPauseRecording {
+    [[CXAudioRecorder sharedInstance] asyncPauseRecording];
+}
+
+// goon recording
++ (void)asyncGoonRecording {
+    [[CXAudioRecorder sharedInstance] asyncGoonRecording];
+}
+
+
 // Cancel recording
 + (void)cancelCurrentRecording {
     [[CXAudioRecorder sharedInstance] cancelCurrentRecording];
@@ -141,13 +152,7 @@
     _recorder.delegate = self;
     
     if ([_recorder record]) {
-        self.recordTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-        dispatch_source_set_timer(self.recordTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 *NSEC_PER_SEC);
-        dispatch_source_set_event_handler(self.recordTimer, ^{
-            [self.recorder updateMeters];
-            self.recordMeters([self.recorder averagePowerForChannel:0], self.recorder.currentTime);
-        });
-        dispatch_resume(self.recordTimer);
+        [self startTimer];
     }
     
     
@@ -159,6 +164,7 @@
 // Stop recording
 -(void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion{
     recordFinish = completion;
+    [self stopTimer];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self->_recorder stop];
     });
@@ -173,7 +179,27 @@
     }
     _recorder = nil;
     recordFinish = nil;
+    
+    [self stopTimer];
 }
+
+// pause recording
+- (void)asyncPauseRecording {
+    if (_recorder.recording) {
+        [_recorder pause];
+        [self stopTimer];
+    }
+}
+
+// goon recording
+- (void)asyncGoonRecording {
+    if (_recorder) {
+        if ([_recorder record]) {
+            [self startTimer];
+        }
+    }
+}
+
 
 #pragma mark - AVAudioRecorderDelegate
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder
@@ -203,6 +229,16 @@
         dispatch_source_cancel(self.recordTimer);
     }
     self.recordTimer = NULL;
+}
+
+- (void)startTimer {
+    self.recordTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(self.recordTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 *NSEC_PER_SEC);
+    dispatch_source_set_event_handler(self.recordTimer, ^{
+        [self.recorder updateMeters];
+        self.recordMeters([self.recorder averagePowerForChannel:0], self.recorder.currentTime);
+    });
+    dispatch_resume(self.recordTimer);
 }
 
 @end

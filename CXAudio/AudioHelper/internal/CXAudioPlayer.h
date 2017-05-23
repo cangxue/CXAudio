@@ -23,6 +23,14 @@ typedef void (^PlayWithMeters)(float meters, NSTimeInterval currentTime);
                 updateMeters:(PlayWithMeters)meters
                   completion:(void(^)(NSError *error))completon;
 
+// pause palying
++ (void)asyncPausePlaying;
+
+// goon palying
++ (void)asyncGoonPlaying;
+
+
+
 + (void)stopCurrentPlaying;
 
 @end

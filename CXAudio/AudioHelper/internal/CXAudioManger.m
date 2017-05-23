@@ -70,13 +70,22 @@ static CXAudioManger *audioManager;
             return;
         }
     }
-
     
     [self setupAudioSessionCategory:CX_AUDIOPLAYER isActive:NO];
     
     [CXAudioPlayer asyncPlayingWithPath:wavFilePath
                            updateMeters:palyMeter
                              completion:completion];
+}
+
+// pause playing
+- (void)asyncPausePlaying {
+    [CXAudioPlayer asyncPausePlaying];
+}
+
+// goon playing
+- (void)asyncGoonPlaying {
+    [CXAudioPlayer asyncGoonPlaying];
 }
 
 // Stop playing
@@ -162,8 +171,19 @@ static CXAudioManger *audioManager;
             [weakSelf setupAudioSessionCategory:CX_DEFAULT isActive:NO];
         }
     }];
-    
+   
 }
+
+// pause recording
+- (void)asyncPauseRecording {
+    [CXAudioRecorder asyncPauseRecording];
+}
+
+// goon recording
+- (void)asyncGoonRecording {
+    [CXAudioRecorder asyncGoonRecording];
+}
+
 // Cancel recording
 -(void)cancelCurrentRecording {
     [CXAudioRecorder cancelCurrentRecording];

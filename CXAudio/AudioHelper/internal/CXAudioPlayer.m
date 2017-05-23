@@ -38,6 +38,16 @@
                                                   completion:completon];
 }
 
+// pause palying
++ (void)asyncPausePlaying {
+    [[CXAudioPlayer sharedInstance] asyncPausePlaying];
+}
+
+// goon palying
++ (void)asyncGoonPlaying {
+    [[CXAudioPlayer sharedInstance] asyncGoonPlaying];
+}
+
 + (void)stopCurrentPlaying{
     [[CXAudioPlayer sharedInstance] stopCurrentPlaying];
 }
@@ -107,13 +117,24 @@
     _player.meteringEnabled = YES;
     [_player prepareToPlay];
     if ([_player play]) {
-        self.playTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-        dispatch_source_set_timer(self.playTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-        dispatch_source_set_event_handler(self.playTimer, ^{
-            [_player updateMeters];
-            self.playMeters([_player averagePowerForChannel:0], _player.currentTime);
-        });
-        dispatch_resume(self.playTimer);
+        [self startTimer];
+    }
+}
+
+// pause palying
+- (void)asyncPausePlaying {
+    if (_player.isPlaying) {
+        [_player pause];
+        [self stopTimer];
+    }
+}
+
+// goon palying
+- (void)asyncGoonPlaying {
+    if (_player) {
+        if ([_player play]) {
+            [self startTimer];
+        }
     }
 }
 
@@ -126,6 +147,8 @@
     if (playFinish) {
         playFinish = nil;
     }
+    
+    [self stopTimer];
 }
 
 - (void)dealloc{
@@ -177,6 +200,16 @@
         dispatch_source_cancel(self.playTimer);
     }
     self.playTimer = NULL;
+}
+
+- (void)startTimer {
+    self.playTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(self.playTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(self.playTimer, ^{
+        [_player updateMeters];
+        self.playMeters([_player averagePowerForChannel:0], _player.currentTime);
+    });
+    dispatch_resume(self.playTimer);
 }
 
 @end
